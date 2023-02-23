@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import KiCore
 
 public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
 
+    public static let range = 0.0...1.0
     public static let clear = RGB(0, 0, 0, alpha: 0)
     
     let red: Double
@@ -21,6 +23,15 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         self.green = green
         self.blue = blue
         self.alpha = alpha
+    }
+    
+    func brightness(_ mod: Double) -> RGB {
+        RGB(
+            (red * mod).clamp(RGB.range),
+            (blue * mod).clamp(RGB.range),
+            (green * mod).clamp(RGB.range),
+            alpha: alpha
+        )
     }
     
     var color: Color { Color(red: red, green: green, blue: blue, opacity: alpha) }
