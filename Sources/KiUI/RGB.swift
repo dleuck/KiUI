@@ -8,7 +8,7 @@
 import SwiftUI
 import KiCore
 
-public struct RGB: Hashable, Codable, Identifiable Equatable, CustomStringConvertible {
+public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
 
     public static let range = 0.0...1.0
     public static let clear = RGB(0, 0, 0, alpha: 0)
