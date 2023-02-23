@@ -11,7 +11,10 @@ import KiCore
 public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
 
     public static let range = 0.0...1.0
+    public static let modRange = -1.0...1.0
     public static let clear = RGB(0, 0, 0, alpha: 0)
+    public static let white = RGB(1, 1, 1, alpha: 1)
+    public static let black = RGB(0, 0, 0, alpha: 1)
     
     public let red: Double
     public let green: Double
@@ -34,6 +37,33 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         )
     }
     
+    /**
+     * 0 to 1.0 for lightening, 0 to -1.- for darkening
+     */
+    public func lightness(_ mod: Double) -> RGB {
+        let modifier = mod.clamp(RGB.modRange)
+        
+        if modifier == 0 {
+            return self
+        } else if modifier > 0 {
+            return blend(RGB.white, percent: modifier)
+        }
+        
+        return blend(RGB.black, percent: abs(modifier))
+    }
+    
+    /**
+     * Blend in a specified percent (0.0 - 0.1) of the other RGB.
+     */
+    public func blend(_ otherRGB: RGB, percent: Double = 0.5) -> RGB {
+        let difRed = abs(red - otherRGB.red) * percent
+        let difGreen = abs(green - otherRGB.green) * percent
+        let difBlue = abs(blue - otherRGB.blue) * percent
+        let difAlpha = abs(alpha - otherRGB.alpha) * percent
+        
+        return RGB(red + difRed, green + difGreen, blue + difBlue, alpha: alpha + difAlpha)
+    }
+    
     public var color: Color { Color(red: red, green: green, blue: blue, opacity: alpha) }
     
     public var description: String {
@@ -54,6 +84,9 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     }
 }
 
+/**
+ * Transform a web color (0-255 for color components) to an RGB (0.0-1.0).
+ */
 public func webRGB(_ red: Double = 0, _ green: Double = 0, _ blue: Double = 0,
                           alpha: Double = 255) -> RGB {
     
