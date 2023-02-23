@@ -18,19 +18,19 @@ public struct Palette: Codable, CustomStringConvertible {
     public let tertiary: RGB
     
     public static let defaultPalette = Palette(
-        name: "default", RGB(102, 71, 216), RGB(43, 139, 49), RGB(208, 178, 26)
+        name: "default", webRGB(102, 71, 216), webRGB(43, 139, 49), webRGB(208, 178, 26)
     )
     
     public static let trafficLightPalette = Palette(
-        name: "traffic", RGB(50, 127, 97), RGB(229, 161, 10), RGB(216, 58, 50)
+        name: "traffic", webRGB(50, 127, 97), webRGB(229, 161, 10), webRGB(216, 58, 50)
     )
     
     public static let rainbowPalette = Palette(
-        name: "rainbow", RGB(163, 130, 212), RGB(137, 195, 233), RGB(250, 234, 144)
+        name: "rainbow", webRGB(163, 130, 212), webRGB(137, 195, 233), webRGB(250, 234, 144)
     )
     
     public static let socialPalette = Palette(
-        name: "social", RGB(12, 198, 171), RGB(84, 33, 244), RGB(206, 158, 5)
+        name: "social", webRGB(12, 198, 171), webRGB(84, 33, 244), webRGB(206, 158, 5)
     )
     
     public init(name: String, _ primary: RGB, _ secondary: RGB, _ tertiary: RGB) {

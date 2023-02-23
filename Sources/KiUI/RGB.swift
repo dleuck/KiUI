@@ -53,3 +53,9 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         hasher.combine(alpha)
     }
 }
+
+public func webRGB(_ red: Double = 0, _ green: Double = 0, _ blue: Double = 0,
+                          alpha: Double = 255) -> RGB {
+    
+    return RGB(red / 255, green / 255, blue / 255, alpha: alpha / 255)
+}
