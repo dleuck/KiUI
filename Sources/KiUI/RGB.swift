@@ -13,8 +13,8 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public static let range = 0.0...1.0
     public static let modRange = -1.0...1.0
     public static let clear = RGB(0, 0, 0, alpha: 0)
-    public static let white = RGB(1, 1, 1, alpha: 1)
-    public static let black = RGB(0, 0, 0, alpha: 1)
+    public static let white = RGB(1, 1, 1)
+    public static let black = RGB(0, 0, 0)
     
     public let red: Double
     public let green: Double
@@ -48,6 +48,11 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         } else if modifier > 0 {
             return blend(RGB.white, percent: modifier)
         }
+        
+        print("darkening")
+        print("modifier: \(modifier)")
+        print("abs(modifier): \(abs(modifier))")
+        print(blend(RGB.black, percent: abs(modifier)).description)
         
         return blend(RGB.black, percent: abs(modifier))
     }
