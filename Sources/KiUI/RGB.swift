@@ -12,9 +12,14 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
 
     public static let range = 0.0...1.0
     public static let modRange = -1.0...1.0
+    
     public static let clear = RGB(0, 0, 0, alpha: 0)
     public static let white = RGB(1, 1, 1)
     public static let black = RGB(0, 0, 0)
+    
+    public static let red = RGB(1, 0, 0)
+    public static let green = RGB(0, 1, 0)
+    public static let blue = RGB(0, 0, 1)
     
     public let red: Double
     public let green: Double
@@ -69,7 +74,12 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         let difBlue = abs(blue - otherRGB.blue) * percent
         let difAlpha = abs(alpha - otherRGB.alpha) * percent
         
-        return RGB(red + difRed, green + difGreen, blue + difBlue, alpha: alpha + difAlpha)
+        return RGB(
+            (red <= difRed) ? red + difRed : red - difRed,
+            (green <= difGreen) ? green + difGreen : green - difGreen,
+            (blue <= difBlue) ? blue + difBlue : blue - difBlue,
+            alpha: (alpha <= difAlpha) ? alpha + difAlpha : alpha - difAlpha
+        )
     }
     
     public var color: Color { Color(red: red, green: green, blue: blue, opacity: alpha) }
