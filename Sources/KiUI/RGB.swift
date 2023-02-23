@@ -8,7 +8,7 @@
 import SwiftUI
 import KiCore
 
-public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
+public struct RGB: Hashable, Codable, Identifiable Equatable, CustomStringConvertible {
 
     public static let range = 0.0...1.0
     public static let clear = RGB(0, 0, 0, alpha: 0)
@@ -28,8 +28,8 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public func brightness(_ mod: Double) -> RGB {
         RGB(
             (red * mod).clamp(RGB.range),
-            (blue * mod).clamp(RGB.range),
             (green * mod).clamp(RGB.range),
+            (blue * mod).clamp(RGB.range),
             alpha: alpha
         )
     }
