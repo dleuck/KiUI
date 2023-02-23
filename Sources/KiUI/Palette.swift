@@ -27,13 +27,13 @@ public struct Palette: Codable {
         name: "social", RGB(12, 198, 171), RGB(84, 33, 244), RGB(206, 158, 5)
     )
     
-    let name: String
+    public let name: String
     
-    let primary: RGB
-    let secondary: RGB
-    let tertiary: RGB
+    public let primary: RGB
+    public let secondary: RGB
+    public let tertiary: RGB
     
-    init(name: String, _ primary: RGB, _ secondary: RGB, _ tertiary: RGB) {
+    public init(name: String, _ primary: RGB, _ secondary: RGB, _ tertiary: RGB) {
         self.name = name
         
         self.primary = primary
