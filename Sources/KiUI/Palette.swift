@@ -1,13 +1,11 @@
 //
-//  File.swift
+//  Palette.swift
 //  
 //
 //  Created by Daniel Leuck on 2023/02/23.
 //
 
-import Foundation
-
-
+import SwiftUI
 
 public struct Palette: Codable, CustomStringConvertible {
     
@@ -39,6 +37,14 @@ public struct Palette: Codable, CustomStringConvertible {
         self.primary = primary
         self.secondary = secondary
         self.tertiary = tertiary
+    }
+    
+    public var rgbs: [RGB] {
+        return [primary, secondary, tertiary]
+    }
+    
+    public var colors: [Color] {
+        return [primary.color, secondary.color, tertiary.color]
     }
     
     public var description: String {
