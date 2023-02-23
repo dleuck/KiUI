@@ -41,6 +41,9 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
      * 0 to 1.0 for lightening, 0 to -1.- for darkening
      */
     public func lightness(_ mod: Double) -> RGB {
+        
+        print("Entering lightness")
+        
         let modifier = mod.clamp(RGB.modRange)
         
         if modifier == 0 {
