@@ -21,7 +21,13 @@ struct DetectOrientation: ViewModifier {
 #endif
 
 public struct Screen {
+    #if(iOS)
     public static var width: Double { UIScreen.main.bounds.size.width }
     public static var height: Double { UIScreen.main.bounds.size.height }
     public static var size: Size { UIScreen.main.bounds.size }
+    #elseif(macOS)
+    public static var width: Double { NSScreen.main!.frame.height }
+    public static var height: Double { NSScreen.main!.frame.height }
+    public static var size: Size { NSScreen.main!.frame.bounds }
+    #endif
 }
