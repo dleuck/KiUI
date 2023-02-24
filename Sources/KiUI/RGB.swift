@@ -46,7 +46,7 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public func smartLight(modBrightness: Double, modLightness: Double) -> RGB {
         let brightColor = brightness(modBrightness)
         let lightnessColor = lightness(modLightness)
-        return brightColor.blend(lightnessColor)
+        return brightColor.blend(lightnessColor, percent: 0.75)
     }
     
     /**
