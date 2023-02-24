@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+#if(macOS)
+import AppKit
+#endif
+
 #if(iOS)
 struct DetectOrientation: ViewModifier {
     @Binding var orientation: UIDeviceOrientation
