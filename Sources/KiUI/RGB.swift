@@ -43,7 +43,7 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     }
     
     // TODO - Move to one param that is calculated for brightness and lightness
-    public func smartLight(_ modBrightness: Double, _ modLightness: Double) -> RGB {
+    public func smartLight(modBrightness: Double, modLightness: Double) -> RGB {
         let brightColor = brightness(modBrightness)
         let lightnessColor = lightness(modLightness)
         return brightColor.blend(lightnessColor)
