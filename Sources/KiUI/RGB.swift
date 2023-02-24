@@ -46,40 +46,45 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
      * 0 to 1.0 for lightening, 0 to -1.- for darkening
      */
     public func lightness(_ mod: Double) -> RGB {
-        
-        print("Entering lightness")
-        
         let modifier = mod.clamp(RGB.modRange)
         
         if modifier == 0 {
             return self
-        } else if modifier > 0 {
-            return blend(RGB.white, percent: modifier)
         }
         
-        print("darkening")
-        print("modifier: \(modifier)")
-        print("abs(modifier): \(abs(modifier))")
-        print(blend(RGB.black, percent: abs(modifier)).description)
-        
-        return blend(RGB.black, percent: abs(modifier))
+        return blend(modifier > 0 ? RGB.white : RGB.black, percent: abs(modifier))
     }
-    
+
     /**
      * Blend in a specified percent (0.0 - 0.1) of the other RGB.
      */
-    public func blend(_ otherRGB: RGB, percent: Double = 0.5) -> RGB {
-        let difRed = abs(red - otherRGB.red) * percent
-        let difGreen = abs(green - otherRGB.green) * percent
-        let difBlue = abs(blue - otherRGB.blue) * percent
-        let difAlpha = abs(alpha - otherRGB.alpha) * percent
+    public func blend(_ other: RGB, percent: Double = 0.5) -> RGB {
+        let perc = percent.clamp(RGB.range)
+
+        let newRed = RGB.between(red, other.red, percent: perc)
+        let newGreen = RGB.between(green, other.green, percent: perc)
+        let newBlue = RGB.between(blue, other.blue, percent: perc)
+        let newAlpha = RGB.between(alpha, other.alpha, percent: perc)
         
-        return RGB(
-            (red <= difRed) ? red + difRed : red - difRed,
-            (green <= difGreen) ? green + difGreen : green - difGreen,
-            (blue <= difBlue) ? blue + difBlue : blue - difBlue,
-            alpha: (alpha <= difAlpha) ? alpha + difAlpha : alpha - difAlpha
-        )
+        return RGB(newRed, newGreen, newBlue, alpha: newAlpha)
+    }
+    
+    // XCTAssertEqual(RGB(0.5, 0, 0).lightness(0.5), RGB(0.75, 0, 0))
+    // Error: testIncreateLightness(): XCTAssertEqual failed: ("r:0.75, g:0.5, b:0.5") is not equal to ("r:0.75, g:0.0, b:0.0")
+    
+    public static func between(_ num1: Double, _ num2: Double, percent: Double = 0.5) -> Double {
+        let perc = 1.0 - percent.clamp(RGB.range)
+        let dif = abs(num1 - num2)
+        
+        if num1 == num2 {
+            return num1
+        }
+        
+        if num2 < num1 {
+            return num2 + perc*dif
+        }
+        
+        return num2 - perc*dif
     }
     
     public var color: Color { Color(red: red, green: green, blue: blue, opacity: alpha) }
