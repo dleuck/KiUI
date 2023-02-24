@@ -42,6 +42,12 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         )
     }
     
+    public func smartLight(_ mod: Double) -> RGB {
+        let brightColor = brightness(mod)
+        let lightnessColor = lightness(mod)
+        return brightColor.blend(lightnessColor)
+    }
+    
     /**
      * 0 to 1.0 for lightening, 0 to -1.- for darkening
      */
@@ -72,7 +78,7 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     // XCTAssertEqual(RGB(0.5, 0, 0).lightness(0.5), RGB(0.75, 0, 0))
     // Error: testIncreateLightness(): XCTAssertEqual failed: ("r:0.75, g:0.5, b:0.5") is not equal to ("r:0.75, g:0.0, b:0.0")
     
-    public static func between(_ num1: Double, _ num2: Double, percent: Double = 0.5) -> Double {
+    internal static func between(_ num1: Double, _ num2: Double, percent: Double = 0.5) -> Double {
         let perc = 1.0 - percent.clamp(RGB.range)
         let dif = abs(num1 - num2)
         
