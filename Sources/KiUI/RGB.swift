@@ -10,6 +10,8 @@ import KiCore
 
 public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
 
+    // TODO: Support creation and access to HSB color components
+    
     public static let range = 0.0...1.0
     public static let modRange = -1.0...1.0
     
@@ -21,16 +23,29 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public static let green = RGB(0, 1, 0)
     public static let blue = RGB(0, 0, 1)
     
+    public static let yellow = RGB(1, 1, 0)
+    public static let orange = RGB(1, 0.5, 0)
+    public static let purple = RGB(0.5, 0, 0.5)
+    
+    
     public let red: Double
     public let green: Double
     public let blue: Double
     public let alpha: Double
     
-    public init(_ red: Double = 0, _ green: Double = 0, _ blue: Double = 0, alpha: Double = 1) {
+    public let name: String
+    
+    public init(_ red: Double = 0, _ green: Double = 0, _ blue: Double = 0, alpha: Double = 1,
+                name: String = "") {
         self.red = red
         self.green = green
         self.blue = blue
         self.alpha = alpha
+        self.name = name
+    }
+    
+    public init(gray: Double = 0.5) {
+        self.init(gray, gray, gray)
     }
     
     public func brightness(_ mod: Double) -> RGB {
@@ -99,7 +114,8 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public var color: Color { Color(red: red, green: green, blue: blue, opacity: alpha) }
     
     public var description: String {
-        return "r:\(red), g:\(green), b:\(blue)\(alpha == 1 ? "" : ", alpha:\(alpha)")"
+        let colorSpec = "r:\(red), g:\(green), b:\(blue)\(alpha == 1 ? "" : ", alpha:\(alpha)")"
+        return (name.isEmpty) ? colorSpec : "\(name) \(colorSpec)"
     }
     
     public var id: Int { description.hashValue }

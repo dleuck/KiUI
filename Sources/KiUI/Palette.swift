@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct Palette: Codable, CustomStringConvertible {
     
+    // TODO: Add standard named variants - pastel, veryLight, light, base, dark, varyDark
+    
     public let name: String
     
     public let primary: RGB

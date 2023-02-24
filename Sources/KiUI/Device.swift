@@ -7,8 +7,8 @@
 
 import SwiftUI
 
+#if(iOS)
 struct DetectOrientation: ViewModifier {
-    
     @Binding var orientation: UIDeviceOrientation
     
     func body(content: Content) -> some View {
@@ -18,6 +18,7 @@ struct DetectOrientation: ViewModifier {
             }
     }
 }
+#endif
 
 public struct Screen {
     public static var width: Double { UIScreen.main.bounds.size.width }
