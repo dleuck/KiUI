@@ -46,7 +46,7 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
     public func smartLight(modBrightness: Double, modLightness: Double) -> RGB {
         let brightColor = brightness(modBrightness)
         let lightnessColor = lightness(modLightness)
-        return brightColor.blend(lightnessColor, percent: 0.75)
+        return brightColor.blend(lightnessColor, percent: 0.85)
     }
     
     /**
@@ -76,9 +76,9 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         return RGB(newRed, newGreen, newBlue, alpha: newAlpha)
     }
     
-    // XCTAssertEqual(RGB(0.5, 0, 0).lightness(0.5), RGB(0.75, 0, 0))
-    // Error: testIncreateLightness(): XCTAssertEqual failed: ("r:0.75, g:0.5, b:0.5") is not equal to ("r:0.75, g:0.0, b:0.0")
-    
+    /**
+     * Returns a numer between num1 and num2. Percent is the percentage of num2 in the result.
+     */
     internal static func between(_ num1: Double, _ num2: Double, percent: Double = 0.5) -> Double {
         let perc = 1.0 - percent.clamp(RGB.range)
         let dif = abs(num1 - num2)
