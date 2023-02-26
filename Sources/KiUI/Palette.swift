@@ -41,19 +41,10 @@ public struct Palette: Codable, CustomStringConvertible {
     )
     
     public static let nouveauPalette = Palette(
-        name: "social", webRGB(57, 174, 160), webRGB(111, 62, 193), webRGB(201, 102, 20),
+        name: "social", webRGB(57, 174, 160), webRGB(111, 62, 193), webRGB(217, 108, 20),
             webRGB(125, 168, 53)
     )
-    
-    /*
-    public static let nouveauPalette = Palette(
-        name: "social", webRGB(57, 174, 160), webRGB(111, 62, 193), webRGB(203, 123, 48),
-            webRGB(125, 168, 53)
-    ) // Red: webRGB(193, 62, 80)
-    */
-    
-    
-    
+
     public init(name: String, _ primary: RGB, _ secondary: RGB, _ tertiary: RGB,
                 _ quaternary: RGB? = nil, danger: RGB = webRGB(193, 62, 80)) {
         
@@ -77,7 +68,9 @@ public struct Palette: Codable, CustomStringConvertible {
     }
     
     public var colors: [Color] {
-        return [primary.color, secondary.color, tertiary.color]
+        return getScheme() == .triadic
+            ? [primary.color, secondary.color, tertiary.color]
+            : [primary.color, secondary.color, tertiary.color, quaternary.color]
     }
     
     public var description: String {
