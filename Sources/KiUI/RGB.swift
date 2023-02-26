@@ -57,15 +57,6 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         )
     }
     
-    // TODO - Move to one param that is calculated for brightness and lightness
-    public func smartLight(modBrightness: Double, modLightness: Double, percent: Double = 0.85)
-        -> RGB {
-            
-        let brightColor = brightness(modBrightness)
-        let lightnessColor = lightness(modLightness)
-        return brightColor.blend(lightnessColor, percent: percent)
-    }
-    
     /**
      * 0 to 1.0 for lightening, 0 to -1.- for darkening
      */
@@ -79,6 +70,15 @@ public struct RGB: Hashable, Codable, Equatable, CustomStringConvertible {
         return blend(modifier > 0 ? RGB.white : RGB.black, percent: abs(modifier))
     }
     
+    // TODO - Move to one param that is calculated for brightness and lightness
+    public func smartLight(modBrightness: Double, modLightness: Double, percent: Double = 0.85)
+        -> RGB {
+            
+        let brightColor = brightness(modBrightness)
+        let lightnessColor = lightness(modLightness)
+        return brightColor.blend(lightnessColor, percent: percent)
+    }
+
     /**
      * Blend in a specified percent (0.0 - 0.1) of the other RGB.
      */
