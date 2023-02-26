@@ -64,7 +64,9 @@ public struct Palette: Codable, CustomStringConvertible {
     }
     
     public var rgbs: [RGB] {
-        return [primary, secondary, tertiary]
+        return getScheme() == .triadic
+            ? [primary, secondary, tertiary]
+            : [primary, secondary, tertiary, quaternary]
     }
     
     public var colors: [Color] {
