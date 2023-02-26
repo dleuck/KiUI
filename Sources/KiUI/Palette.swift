@@ -41,9 +41,16 @@ public struct Palette: Codable, CustomStringConvertible {
     )
     
     public static let nouveauPalette = Palette(
+        name: "social", webRGB(57, 174, 160), webRGB(111, 62, 193), webRGB(201, 102, 20),
+            webRGB(125, 168, 53)
+    )
+    
+    /*
+    public static let nouveauPalette = Palette(
         name: "social", webRGB(57, 174, 160), webRGB(111, 62, 193), webRGB(203, 123, 48),
             webRGB(125, 168, 53)
     ) // Red: webRGB(193, 62, 80)
+    */
     
     
     
