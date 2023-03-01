@@ -28,6 +28,10 @@ public struct Palette: Codable, CustomStringConvertible {
         name: "default", webRGB(102, 71, 216), webRGB(43, 139, 49), webRGB(208, 178, 26)
     )
     
+    public static let naturePalette = Palette(
+        name: "default", webRGB(67, 137, 194), webRGB(149, 200, 46), webRGB(218, 175, 63)
+    )
+    
     public static let trafficLightPalette = Palette(
         name: "traffic", webRGB(50, 127, 97), webRGB(229, 161, 10), webRGB(216, 58, 50)
     )
