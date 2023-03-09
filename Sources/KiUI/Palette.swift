@@ -24,7 +24,7 @@ public struct Palette: Codable, CustomStringConvertible {
     public let danger: RGB
 
     public static let fun = Palette(
-        name: "default", webRGB(102, 71, 216), webRGB(43, 139, 49), webRGB(208, 178, 26)
+        name: "fun", webRGB(102, 71, 216), webRGB(43, 139, 49), webRGB(208, 178, 26)
     )
     
     public static let nature = Palette(
@@ -32,7 +32,7 @@ public struct Palette: Codable, CustomStringConvertible {
     )
     
     public static let trafficLight = Palette(
-        name: "traffic", webRGB(50, 127, 97), webRGB(229, 161, 10), webRGB(216, 58, 50)
+        name: "traffic light", webRGB(50, 127, 97), webRGB(229, 161, 10), webRGB(216, 58, 50)
     )
     
     public static let rainbow = Palette(
