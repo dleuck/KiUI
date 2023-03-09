@@ -23,7 +23,7 @@ public struct Palette: Codable, CustomStringConvertible {
     public let quaternary: RGB
     public let danger: RGB
 
-    public static let `default` = Palette(
+    public static let fun = Palette(
         name: "default", webRGB(102, 71, 216), webRGB(43, 139, 49), webRGB(208, 178, 26)
     )
     
@@ -60,6 +60,10 @@ public struct Palette: Codable, CustomStringConvertible {
         self.danger = danger
     }
     
+    public static func getPalettes() -> [Palette] {
+        return [fun, nature, trafficLight, rainbow, social, nouveau]
+    }
+
     public func getScheme() -> ColorScheme {
         return tertiary == quaternary ? .triadic : .tetradic
     }
