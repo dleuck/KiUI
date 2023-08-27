@@ -4,7 +4,7 @@ public extension View {
     func hspace(_ size: Double) -> some View { Spacer().frame(width: size) }
     func vspace(_ size: Double) -> some View { Spacer().frame(height: size) }
     
-    #if(iOS)
+    #if canImport(UIKit)
     func detectOrientation(_ orientation: Binding<UIDeviceOrientation>) -> some View {
         modifier(DetectOrientation(orientation: orientation))
     }

@@ -11,7 +11,7 @@ import SwiftUI
 import AppKit
 #endif
 
-#if(iOS)
+#if canImport(UIKit)
 struct DetectOrientation: ViewModifier {
     @Binding var orientation: UIDeviceOrientation
     
