@@ -11,7 +11,11 @@ public extension View {
     #endif
     
     var isPad: Bool {
-        return UIDevice.current.userInterfaceIdiom == .pad
+        #if canImport(UIKit)
+            return UIDevice.current.userInterfaceIdiom == .pad
+        #else
+            return false
+        #endif
     }
     
     var isPhone: Bool {
