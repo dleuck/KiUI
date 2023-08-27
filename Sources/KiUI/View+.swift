@@ -11,7 +11,7 @@ public extension View {
     #endif
     
     var isPad: Bool {
-        #if(iOS)
+        #if(iOS || iPadOS)
             return UIDevice.current.userInterfaceIdiom == .pad
         #else
             return false
