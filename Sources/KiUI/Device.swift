@@ -25,6 +25,17 @@ struct DetectOrientation: ViewModifier {
 #endif
 
 public struct Screen {
+    #if canImport(UIKit)
+        public static var width: Double { UIScreen.main.bounds.size.width }
+        public static var height: Double { UIScreen.main.bounds.size.height }
+        public static var size: Size { UIScreen.main.bounds.size }
+    #else
+        public static var width: Double { NSScreen.main!.frame.height }
+        public static var height: Double { NSScreen.main!.frame.height }
+        public static var size: Size { NSScreen.main!.frame.bounds }
+    #endif
+    
+    /*
     #if(iOS || iPadOS)
     public static var width: Double { UIScreen.main.bounds.size.width }
     public static var height: Double { UIScreen.main.bounds.size.height }
@@ -34,4 +45,5 @@ public struct Screen {
     public static var height: Double { NSScreen.main!.frame.height }
     public static var size: Size { NSScreen.main!.frame.bounds }
     #endif
+    */
 }
